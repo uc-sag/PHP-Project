@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://www.ucertify.com/layout/themes/bootstrap4/ux/css/bootstrap4.css">
     <link rel="stylesheet" href="https://www.ucertify.com/utils/?util=icomoon">
 </head>
-<div class="border-top pt-2 pb-2 bg-light d-flex justify-content-end">
+<div class="border-top pt-2 pb-2 bg-light d-flex justify-content-end mt2">
 <span class="mr-2 pt-1">
     <span id="hh">01</span>:
     <span id="mm">13</span>:

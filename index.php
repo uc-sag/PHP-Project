@@ -99,6 +99,7 @@ function getQuestions(){
             $explain = $data['explanation'];
         }
     }
+   
     $smarty->assign('explain', $explain);
     $smarty->display('explanation.tpl');
  }

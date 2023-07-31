@@ -31,7 +31,7 @@
 
 
 
-<div class="d-flex flex-column align-items-start mt-5 ml-5 h-75">
+<div class="d-flex flex-column align-items-start mt-5 ml-5 mb-5 mt-5 h-50">
     <div id="question">Click to select the areas that should be covered in redundancy plans. </div>
     <br>
     <div> 
@@ -50,20 +50,20 @@
     <label for="option-d" id="optionD">CREATE VIEW Get_salary WITH SCHEMABINDING SELECT FirstName, LastName, Salary FROM Employees</label>
     </div>
 </div>
-
-
+<div class="height50"></div>
 {include file = 'footer.tpl'}
 <script>
 //It shows the List option and Hide it*****************************
 const list = document.getElementById('list');
 const sidebar = document.getElementById('sidebar');
 list.addEventListener('click',function(){
+  saveAnswer(ques_no);
     let show = sidebar.classList.contains("d-none");
    
     if(show){
         sidebar.classList.remove("d-none");
         sidebar.classList.add("d-block");
-        quesList();
+        quesList("all");
     }
     else{
         sidebar.classList.remove("d-block");
@@ -89,6 +89,23 @@ function setQuestion(condition){
     setOptions(ques_no); 
     setCurrQuesNo(ques_no + 1);
   }
+  buttonDisable();
+
+}
+
+function buttonDisable(){
+  if(ques_no == 0){
+    document.getElementById('prev').classList.add('disabled');
+  }else if(document.getElementById('prev').classList.contains('disabled')){
+    document.getElementById('prev').classList.remove('disabled');
+  }
+
+  if(ques_no == questions.length - 1){
+    document.getElementById('next').classList.add('disabled');
+  }
+  else if(document.getElementById('next').classList.contains('disabled')){
+    document.getElementById('next').classList.remove('disabled');
+  }
 
 }
 
@@ -101,9 +118,10 @@ function listClickHandller(id){
     if(questions[i].content_id == id){
          ques_no = i;
          que_ele.innerText = questions[i].question;
-         setOptions(i); 
-         setCurrQuesNo(i+1);
          resetOptions();
+         setOptions(i); 
+         buttonDisable();
+         setCurrQuesNo(i+1);
     }
   }
 
@@ -112,14 +130,35 @@ function listClickHandller(id){
 //Set Options******************************************************
 function setOptions(curr){
   
-  let option_a = document.getElementById('optionA');
-  let option_b = document.getElementById('optionB');
-  let option_c = document.getElementById('optionC');
-  let option_d = document.getElementById('optionD');
-  option_a.innerText = questions[curr].options[0].answer;
-  option_b.innerText = questions[curr].options[1].answer;
-  option_c.innerText = questions[curr].options[2].answer;
-  option_d.innerText = questions[curr].options[3].answer;
+  let optionA = document.getElementById('optionA');
+  let optionB = document.getElementById('optionB');
+  let optionC = document.getElementById('optionC');
+  let optionD = document.getElementById('optionD');
+  let option_a = document.getElementById('option-a');
+  let option_b = document.getElementById('option-b');
+  let option_c = document.getElementById('option-c');
+  let option_d = document.getElementById('option-d');
+  optionA.innerText = questions[curr].options[0].answer;
+  optionB.innerText = questions[curr].options[1].answer;
+  optionC.innerText = questions[curr].options[2].answer;
+  optionD.innerText = questions[curr].options[3].answer;
+
+    if(answer[curr] == 1){
+
+      document.getElementById("option-a").checked = true;
+    }
+    else if(answer[curr] == 2){
+
+      option_b.checked = true;
+    }
+    else if(answer[curr] == 3){
+
+      option_c.checked = true;
+    }
+    else if(answer[curr] == 4){
+     
+      option_d.checked = true;
+    }
 
 }
 //*******************************************************************
@@ -142,8 +181,8 @@ next.addEventListener('click',function()
   
   if(ques_no < questions.length-1){ 
     saveAnswer(ques_no);
-    setQuestion('incr');
     resetOptions();
+    setQuestion('incr');
   }
 });
 
@@ -152,8 +191,8 @@ prev.addEventListener('click',function()
 { 
   if(ques_no > 0){
     saveAnswer(ques_no);
-    setQuestion('decr');
     resetOptions();
+    setQuestion('decr');
   }
 });
 
@@ -245,31 +284,177 @@ function setTimer(HH,MM,SS){
 }
 //***************************************************************************************
 
+function selectCondition(condition){
+  let ele1= document.getElementById('all');
+  let ele2 = document.getElementById('attempted');
+  let ele3 = document.getElementById('unattempted');
+  if(condition == 'all'){
+    if(ele1.classList.contains('btn-secondary')){
+      ele1.classList.remove('btn-secondary');
+      ele1.classList.add('btn-primary');
+    }
+    if(ele2.classList.contains('btn-primary')){
+      ele2.classList.remove('btn-primary');
+      ele2.classList.add('btn-secondary');
+    }
+    if(ele3.classList.contains('btn-primary')){
+      ele3.classList.remove('btn-primary');
+      ele3.classList.add('btn-secondary');
+    }
+  }
+  else if(condition == 'attempted'){
+   
+    if(ele2.classList.contains('btn-secondary')){
+      ele2.classList.remove('btn-secondary');
+      ele2.classList.add('btn-primary');
+    }
+    if(ele1.classList.contains('btn-primary')){
+      console.log("Called");
+      ele1.classList.remove('btn-primary');
+      ele1.classList.add('btn-secondary');
+    }
+    if(ele3.classList.contains('btn-primary')){
+      ele3.classList.remove('btn-primary');
+      ele3.classList.add('btn-secondary');
+    }
+  }
+  else if(condition == 'unattempted'){
+
+    if(ele3.classList.contains('btn-secondary')){
+      ele3.classList.remove('btn-secondary');
+      ele3.classList.add('btn-primary');
+    }
+    if(ele2.classList.contains('btn-primary')){
+      ele2.classList.remove('btn-primary');
+      ele2.classList.add('btn-secondary');
+    }
+    if(ele1.classList.contains('btn-primary')){
+      ele1.classList.remove('btn-primary');
+      ele1.classList.add('btn-secondary');
+    }
+  }
+}
+
 
 //Question List *******************************************************************************
 const ques_list = document.getElementById('ques_list');
 
 
-function quesList(){
-  ques_list.innerHTML = "";
+function quesList(condition){
+
+  if(condition == "all"){
+    selectCondition('all');
+    ques_list.innerHTML = "";
   for(i=0;i<questions.length;i++){
-    const box = document.createElement("div");
-    const node = document.createElement("div");
-    const status = document.createElement('div'); 
-    let ele = (i+1)+ " -> " + questions[i].question;
-    node.innerText = ele;
-    status.innerText = 'unattempted';
-    node.classList.add("overflow-hidden");
+      const box = document.createElement("div");
+      const node = document.createElement("div");
+      const status = document.createElement('div'); 
+      let ele = (i+1)+ " -> " + questions[i].question;
+      node.innerText = ele;
+      status.classList.add('badge');
+      status.classList.add('rounded-pill');
     
-    box.setAttribute('id',questions[i].content_id);
-    status.classList.add('badge');
-    status.classList.add('rounded-pill');
-    status.classList.add('bg-secondary');
-    box.appendChild(node);
-    box.appendChild(status);
-    box.classList.add('border-bottom');
-    ques_list.appendChild(box); 
+      if(answer[i] == -1){
+        status.innerText = 'unattempted';
+        if( status.classList.contains('bg-success')){
+          status.classList.remove('bg-success');
+        }
+        status.classList.add('bg-secondary');
+      }
+      else{
+        status.innerText = 'attempted';
+        if( status.classList.contains('bg-secondary')){
+          status.classList.remove('bg-secondary');
+        }
+        status.classList.add('bg-success');
+      }
+      node.classList.add("overflow-hidden");
+      
+      box.setAttribute('id',questions[i].content_id);
+      box.appendChild(node);
+      box.appendChild(status);
+      box.classList.add('border-bottom');
+      ques_list.appendChild(box); 
+    }
+  
   }
+
+  else if(condition == "attempted"){
+    selectCondition('attempted');
+    ques_list.innerHTML = "";
+  for(i=0;i<questions.length;i++){
+    if(answer[i] != -1){
+      const box = document.createElement("div");
+      const node = document.createElement("div");
+      const status = document.createElement('div'); 
+      let ele = (i+1)+ " -> " + questions[i].question;
+      node.innerText = ele;
+      status.classList.add('badge');
+      status.classList.add('rounded-pill');
+    
+      if(answer[i] == -1){
+        status.innerText = 'unattempted';
+        if( status.classList.contains('bg-success')){
+          status.classList.remove('bg-success');
+        }
+        status.classList.add('bg-secondary');
+      }
+      else{
+        status.innerText = 'attempted';
+        if( status.classList.contains('bg-secondary')){
+          status.classList.remove('bg-secondary');
+        }
+        status.classList.add('bg-success');
+      }
+      node.classList.add("overflow-hidden");
+      
+      box.setAttribute('id',questions[i].content_id);
+      box.appendChild(node);
+      box.appendChild(status);
+      box.classList.add('border-bottom');
+      ques_list.appendChild(box); 
+    }
+  }
+  }
+  else if(condition == "unattempted"){
+    selectCondition('unattempted');
+    ques_list.innerHTML = "";
+  for(i=0;i<questions.length;i++){
+    if(answer[i] == -1){
+      const box = document.createElement("div");
+      const node = document.createElement("div");
+      const status = document.createElement('div'); 
+      let ele = (i+1)+ " -> " + questions[i].question;
+      node.innerText = ele;
+      status.classList.add('badge');
+      status.classList.add('rounded-pill');
+    
+      if(answer[i] == -1){
+        status.innerText = 'unattempted';
+        if( status.classList.contains('bg-success')){
+          status.classList.remove('bg-success');
+        }
+        status.classList.add('bg-secondary');
+      }
+      else{
+        status.innerText = 'attempted';
+        if( status.classList.contains('bg-secondary')){
+          status.classList.remove('bg-secondary');
+        }
+        status.classList.add('bg-success');
+      }
+      node.classList.add("overflow-hidden");
+      
+      box.setAttribute('id',questions[i].content_id);
+      box.appendChild(node);
+      box.appendChild(status);
+      box.classList.add('border-bottom');
+      ques_list.appendChild(box); 
+    }
+  }
+  }
+
+
 
 }
 
