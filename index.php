@@ -20,7 +20,6 @@ function getQuestions(){
  }
  else if($_SERVER['REQUEST_URI'] == '/PHP_Project/start')
  {  
-    
     $smarty->display('TestPage.tpl');
  }
 

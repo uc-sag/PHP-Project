@@ -8,9 +8,24 @@
 </head>
 <body>
 {include file = 'header.tpl'}
-  Explanation
+<h2>Explanation</h2>
+<div class="h-50">
   {$explain}
-  <br>
+</div>
+
+<div class="height100"></div>
+
+<div class="border-top pt-2 pb-2 bg-light d-flex justify-content-end mt2">
+
+<button class="mr-2 btn btn-secondary" id="back" onclick="history.back()">Go Back</button>
+
+
+<a href="./index.php" class="mr-5 btn btn-secondary " >
+
+Dashboard
+
+</a>
+</div>
 </body>
 
 </html>

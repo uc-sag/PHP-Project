@@ -8,6 +8,9 @@
 </head>
 <body>
 {include file = 'header.tpl'}
+<div>
+  
+</div>
 <table class="table align-middle">
   <thead>
     <tr>

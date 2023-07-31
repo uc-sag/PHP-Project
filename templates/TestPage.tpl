@@ -138,10 +138,10 @@ function setOptions(curr){
   let option_b = document.getElementById('option-b');
   let option_c = document.getElementById('option-c');
   let option_d = document.getElementById('option-d');
-  optionA.innerText = questions[curr].options[0].answer;
-  optionB.innerText = questions[curr].options[1].answer;
-  optionC.innerText = questions[curr].options[2].answer;
-  optionD.innerText = questions[curr].options[3].answer;
+  optionA.innerText = questions[curr].options[0]['answer'];
+  optionB.innerText = questions[curr].options[1]['answer'];
+  optionC.innerText = questions[curr].options[2]['answer'];
+  optionD.innerText = questions[curr].options[3]['answer'];
 
     if(answer[curr] == 1){
 

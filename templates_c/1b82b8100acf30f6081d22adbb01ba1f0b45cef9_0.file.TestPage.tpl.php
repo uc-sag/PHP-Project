@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-07-31 06:14:41
+/* Smarty version 4.3.1, created on 2023-07-31 07:07:10
   from 'C:\XAMPP\htdocs\PHP_Project\templates\TestPage.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_64c7353151a6f8_86723209',
+  'unifunc' => 'content_64c7417e773b34_24042779',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1b82b8100acf30f6081d22adbb01ba1f0b45cef9' => 
     array (
       0 => 'C:\\XAMPP\\htdocs\\PHP_Project\\templates\\TestPage.tpl',
-      1 => 1690776879,
+      1 => 1690780025,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_64c7353151a6f8_86723209 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64c7417e773b34_24042779 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 <head>
     <title>Test</title>
@@ -167,10 +167,10 @@ function setOptions(curr){
   let option_b = document.getElementById('option-b');
   let option_c = document.getElementById('option-c');
   let option_d = document.getElementById('option-d');
-  optionA.innerText = questions[curr].options[0].answer;
-  optionB.innerText = questions[curr].options[1].answer;
-  optionC.innerText = questions[curr].options[2].answer;
-  optionD.innerText = questions[curr].options[3].answer;
+  optionA.innerText = questions[curr].options[0]['answer'];
+  optionB.innerText = questions[curr].options[1]['answer'];
+  optionC.innerText = questions[curr].options[2]['answer'];
+  optionD.innerText = questions[curr].options[3]['answer'];
 
     if(answer[curr] == 1){
 
