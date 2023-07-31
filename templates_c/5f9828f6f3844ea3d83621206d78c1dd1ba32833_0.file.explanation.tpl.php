@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-07-31 06:28:20
+/* Smarty version 4.3.1, created on 2023-07-31 07:23:52
   from 'C:\XAMPP\htdocs\PHP_Project\templates\explanation.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_64c73864275936_20102628',
+  'unifunc' => 'content_64c745686dcfc9_26021008',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5f9828f6f3844ea3d83621206d78c1dd1ba32833' => 
     array (
       0 => 'C:\\XAMPP\\htdocs\\PHP_Project\\templates\\explanation.tpl',
-      1 => 1690777696,
+      1 => 1690781030,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:header.tpl' => 1,
   ),
 ),false)) {
-function content_64c73864275936_20102628 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64c745686dcfc9_26021008 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 <head>
     <title>Explanation</title>
@@ -34,9 +34,10 @@ function content_64c73864275936_20102628 (Smarty_Internal_Template $_smarty_tpl)
 <?php $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <h2>Explanation</h2>
-<div class="h-50">
-  <?php echo $_smarty_tpl->tpl_vars['explain']->value;?>
+<div class="h-50" id="exp" >
+ <?php echo $_smarty_tpl->tpl_vars['explain']->value;?>
 
+  
 </div>
 
 <div class="height100"></div>
@@ -52,6 +53,7 @@ Dashboard
 
 </a>
 </div>
+
 </body>
 
 </html><?php }

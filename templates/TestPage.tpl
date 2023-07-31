@@ -462,6 +462,16 @@ ques_list.addEventListener('click',function(e){
    let clicked_id =  e.target.parentElement.id;
    listClickHandller(clicked_id);
 });
+ques_list.addEventListener('mouseover',function(e){
+    ques_list.style.cursor = 'pointer';
+    e.target.parentElement.classList.add('bg-light');
+  });
+ques_list.addEventListener('mouseout',function(e){
+  ques_list.style.cursor = 'default';
+  if( e.target.parentElement.classList.contains('bg-light')){
+    e.target.parentElement.classList.remove('bg-light');
+  }
+});
 
 //************************************************************
 

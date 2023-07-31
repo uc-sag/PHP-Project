@@ -20,6 +20,10 @@ function getQuestions(){
  }
  else if($_SERVER['REQUEST_URI'] == '/PHP_Project/start')
  {  
+    // echo '<pre>';
+    // print_r((array)json_decode($json_data[5]['content_text']));
+    // echo '</pre>';
+    // die();
     $smarty->display('TestPage.tpl');
  }
 

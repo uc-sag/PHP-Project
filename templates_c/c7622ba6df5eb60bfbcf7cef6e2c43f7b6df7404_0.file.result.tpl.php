@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-07-31 06:52:45
+/* Smarty version 4.3.1, created on 2023-07-31 07:42:20
   from 'C:\XAMPP\htdocs\PHP_Project\templates\result.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_64c73e1d938a84_04508478',
+  'unifunc' => 'content_64c749bc9844c2_06731642',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c7622ba6df5eb60bfbcf7cef6e2c43f7b6df7404' => 
     array (
       0 => 'C:\\XAMPP\\htdocs\\PHP_Project\\templates\\result.tpl',
-      1 => 1690777803,
+      1 => 1690782138,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:header.tpl' => 1,
   ),
 ),false)) {
-function content_64c73e1d938a84_04508478 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64c749bc9844c2_06731642 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 <head>
     <title>Result</title>
@@ -104,6 +104,16 @@ if ($_prefixVariable4 == 4) {?> class ="answer_bullets bg-success"<?php } elseif
             document.body.appendChild(form);
             form.submit();
         }
+    });
+    body.addEventListener('mouseover',function(e){
+      body.style.cursor = 'pointer';
+      e.target.parentElement.classList.add('bg-light');
+    });
+    body.addEventListener('mouseout',function(e){
+      body.style.cursor = 'default';
+      if( e.target.parentElement.classList.contains('bg-light')){
+        e.target.parentElement.classList.remove('bg-light');
+      }
     });
 <?php echo '</script'; ?>
 >

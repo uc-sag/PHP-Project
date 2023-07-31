@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-07-31 07:07:10
+/* Smarty version 4.3.1, created on 2023-07-31 07:56:53
   from 'C:\XAMPP\htdocs\PHP_Project\templates\TestPage.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_64c7417e773b34_24042779',
+  'unifunc' => 'content_64c74d251373f8_54399792',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1b82b8100acf30f6081d22adbb01ba1f0b45cef9' => 
     array (
       0 => 'C:\\XAMPP\\htdocs\\PHP_Project\\templates\\TestPage.tpl',
-      1 => 1690780025,
+      1 => 1690783009,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_64c7417e773b34_24042779 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64c74d251373f8_54399792 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 <head>
     <title>Test</title>
@@ -490,6 +490,16 @@ function quesList(condition){
 ques_list.addEventListener('click',function(e){
    let clicked_id =  e.target.parentElement.id;
    listClickHandller(clicked_id);
+});
+ques_list.addEventListener('mouseover',function(e){
+    ques_list.style.cursor = 'pointer';
+    e.target.parentElement.classList.add('bg-light');
+  });
+ques_list.addEventListener('mouseout',function(e){
+  ques_list.style.cursor = 'default';
+  if( e.target.parentElement.classList.contains('bg-light')){
+    e.target.parentElement.classList.remove('bg-light');
+  }
 });
 
 //************************************************************

@@ -9,8 +9,9 @@
 <body>
 {include file = 'header.tpl'}
 <h2>Explanation</h2>
-<div class="h-50">
-  {$explain}
+<div class="h-50" id="exp" >
+ {$explain}
+  
 </div>
 
 <div class="height100"></div>
@@ -26,6 +27,7 @@ Dashboard
 
 </a>
 </div>
+
 </body>
 
 </html>

@@ -58,6 +58,16 @@
             form.submit();
         }
     });
+    body.addEventListener('mouseover',function(e){
+      body.style.cursor = 'pointer';
+      e.target.parentElement.classList.add('bg-light');
+    });
+    body.addEventListener('mouseout',function(e){
+      body.style.cursor = 'default';
+      if( e.target.parentElement.classList.contains('bg-light')){
+        e.target.parentElement.classList.remove('bg-light');
+      }
+    });
 </script>
 </body>
 
