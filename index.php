@@ -77,6 +77,7 @@ $json_data = json_decode($json,true);
  {
    $user  = $_POST['data'];
    $user = json_decode($user);
+  
    $_SESSION['user_answer'] = $user;
    showResult($json_data,$user,$smarty);
  }
@@ -119,11 +120,17 @@ $json_data = json_decode($json,true);
         $temp2 = $temp[1];
         array_push($explanationModified,$temp2);
     }
+    $original_answer = $original_correct_options;
+    $answerByUser = $_SESSION['user_answer'];
+    $original_correct_options = array_map("convertOneToA",$original_correct_options);
+    $_SESSION['user_answer'] = array_map("convertOneToA",$_SESSION['user_answer']);
     $total =  count($_SESSION['question_arr']);
     $smarty->assign('question_arr', $_SESSION['question_arr']);
     $smarty->assign('user_answer', $_SESSION['user_answer']);
+    $smarty->assign('answerByUser', $answerByUser);
     $smarty->assign('explanation', $explanationModified);
     $smarty->assign('original_correct_options', $original_correct_options);
+    $smarty->assign('original_answer',  $original_answer);
     $smarty->assign('current', $sequence_no);
     $smarty->assign('total', $total);
     $smarty->display('explanation.tpl');
@@ -174,3 +181,21 @@ $json_data = json_decode($json,true);
  }
 //*******************************************************************************
 //*******************************************************************************
+function convertOneToA($x){
+    switch ($x){
+        case 1:
+            return 'A';
+            break;
+        case 2:
+            return 'B';
+            break;
+        case 3:
+            return 'C';
+            break;
+        case 4:
+            return 'D';
+            break;
+        default:
+            return 'X';
+    }
+}

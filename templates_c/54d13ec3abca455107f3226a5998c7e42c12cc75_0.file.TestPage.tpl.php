@@ -1,9 +1,37 @@
-<html>
-{include file = 'header.tpl'}
+<?php
+/* Smarty version 4.3.1, created on 2023-08-07 05:41:55
+  from 'C:\XAMPP\htdocs\website\PHP_Project\templates\TestPage.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.1',
+  'unifunc' => 'content_64d06803e849a7_76821950',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '54d13ec3abca455107f3226a5998c7e42c12cc75' => 
+    array (
+      0 => 'C:\\XAMPP\\htdocs\\website\\PHP_Project\\templates\\TestPage.tpl',
+      1 => 1691379714,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:header.tpl' => 1,
+    'file:sidebar.tpl' => 1,
+    'file:footer.tpl' => 1,
+  ),
+),false)) {
+function content_64d06803e849a7_76821950 (Smarty_Internal_Template $_smarty_tpl) {
+?><html>
+<?php $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
 <body>
 <div class="height50"></div>
-  {include file = 'sidebar.tpl'}
+  <?php $_smarty_tpl->_subTemplateRender('file:sidebar.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
  
 
@@ -69,12 +97,14 @@
   </div>
   <div class="height50"></div>
   
-  {include file = 'footer.tpl'}
+  <?php $_smarty_tpl->_subTemplateRender('file:footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
 
 
 
-  <script>
+  <?php echo '<script'; ?>
+>
     //It shows the List option and Hide it*****************************
     document.getElementById('list').addEventListener('click', showHideList);
 
@@ -457,7 +487,9 @@ function setOptions(curr) {
 
 
    
-  </script>
+  <?php echo '</script'; ?>
+>
 </body>
 
-</html>
+</html><?php }
+}

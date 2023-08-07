@@ -13,11 +13,11 @@
 </div>
 <br>
 <div class="ml-3 pl-3">
-  
+  <ol type="A">
     {for $foo=0 to 3}
-        <li>  <span {if $original_correct_options[$current] == $foo+1} class ="alert-success"{elseif $user_answer[$current] == $foo+1} class="alert-danger"{/if}>{$question_arr[$current]['options'][$foo]['answer']}</span> </li>
+        <li><span {if $original_answer[$current] == $foo+1} class ="alert-success"{elseif $answerByUser[$current] == $foo+1} class="alert-danger"{/if}>{$question_arr[$current]['options'][$foo]['answer']}</span> </li>
     {/for}
-
+  </ol>
 </div>
     <div class="mt-3 ml-3 pl-3 ">
     <h3 class="border-bottom">Explanation</h3>
