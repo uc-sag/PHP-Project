@@ -90,7 +90,7 @@ $json_data = json_decode($json,true);
 // It get the answer already stored in $_SESSION['user_answer'] and Displays it****************
  elseif($_SERVER['REQUEST_URI'] == '/PHP_Project/result')
  {
-   $user=  $_SESSION['user_answer'] ;
+   $user=  $_SESSION['user_answer_numberFormat'] ;
     showResult($json_data,$user,$smarty);
 
  }
@@ -121,12 +121,13 @@ $json_data = json_decode($json,true);
         array_push($explanationModified,$temp2);
     }
     $original_answer = $original_correct_options;
+    $_SESSION['user_answer_numberFormat'] = $_SESSION['user_answer'];
     $answerByUser = $_SESSION['user_answer'];
     $original_correct_options = array_map("convertOneToA",$original_correct_options);
-    $_SESSION['user_answer'] = array_map("convertOneToA",$_SESSION['user_answer']);
+    $user_answer_alphabetFormat= array_map("convertOneToA",$_SESSION['user_answer']);
     $total =  count($_SESSION['question_arr']);
     $smarty->assign('question_arr', $_SESSION['question_arr']);
-    $smarty->assign('user_answer', $_SESSION['user_answer']);
+    $smarty->assign('user_answer', $user_answer_alphabetFormat);
     $smarty->assign('answerByUser', $answerByUser);
     $smarty->assign('explanation', $explanationModified);
     $smarty->assign('original_correct_options', $original_correct_options);
@@ -169,6 +170,7 @@ $json_data = json_decode($json,true);
             $corr ++;
         }
     }
+    
     $percentage = ($corr / count($question_arr)) * 100;
     $percentage = number_format($percentage, 2, '.', '');
     $smarty->assign('questions', $question_arr);
@@ -183,7 +185,7 @@ $json_data = json_decode($json,true);
 //*******************************************************************************
 
 
-// Convert Options in numbers to Characters*************************************
+// Convert Options from numbers to Characters*************************************
 function convertOneToA($x){
     switch ($x){
         case 1:

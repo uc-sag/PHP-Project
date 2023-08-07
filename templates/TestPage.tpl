@@ -73,46 +73,54 @@
 
 
 
+<script>
+// These variables are used to store questions and user answer respectively***********************************
+const questions = [];
+const answer = [];
+// ************************************************************************************************************
 
-  <script>
-    //It shows the List option and Hide it*****************************
-    document.getElementById('list').addEventListener('click', showHideList);
 
-    function showHideList(){
-      const sidebar = document.getElementById('sidebar');
-      saveAnswer(ques_no);
-      let show = sidebar.classList.contains("d-none");
 
-      if (show) {
-        sidebar.classList.remove("d-none");
-        sidebar.classList.add("d-block");
-        quesList("all");
-      } else {
-        sidebar.classList.remove("d-block");
-        sidebar.classList.add("d-none");
-      }
-    }
+//It shows the List option and Hide it*****************************
+document.getElementById('list').addEventListener('click', showHideList);
+
+function showHideList(){
+  const sidebar = document.getElementById('sidebar');
+  saveAnswer(ques_no);
+  let show = sidebar.classList.contains("d-none");
+
+  if (show) {
+    sidebar.classList.remove("d-none");
+    sidebar.classList.add("d-block");
+    quesList("all");
+  } else {
+    sidebar.classList.remove("d-block");
+    sidebar.classList.add("d-none");
+  }
+}
     //**************************************************************
 
-    //Set questions *************************************************
-    let ques_no = -1;
-    function setQuestion(condition) {
-      let que_ele = document.getElementById('question');
-      if (condition === 'decr') // decr is used because if we use incr the during first time it will not run 
-      {
 
-        que_ele.innerText = questions[--ques_no].question;
-        setOptions(ques_no);
-        setCurrQuesNo(ques_no + 1);
-      } else {
 
-        que_ele.innerText = questions[++ques_no].question;
-        setOptions(ques_no);
-        setCurrQuesNo(ques_no + 1);
-      }
-      buttonDisable();
+//Set questions *************************************************
+let ques_no = -1;
+function setQuestion(condition) {
+  let que_ele = document.getElementById('question');
+  if (condition === 'decr') // decr is used because if we use incr the during first time it will not run 
+  {
 
-    }
+    que_ele.innerText = questions[--ques_no].question;
+    setOptions(ques_no);
+    setCurrQuesNo(ques_no + 1);
+  } else {
+
+    que_ele.innerText = questions[++ques_no].question;
+    setOptions(ques_no);
+    setCurrQuesNo(ques_no + 1);
+  }
+  buttonDisable();
+
+}
 
     function buttonDisable() {
       if (ques_no == 0) {
@@ -170,213 +178,227 @@ function setOptions(curr) {
 }
 
 
-    // Show Question No*************************************************
-    function setCurrQuesNo(curr_no) {
-      document.getElementById('curr_ques_no').innerText = curr_no;
+// It shows the Total question and current question Number in footer*************************************************
+function setCurrQuesNo(curr_no) {
+  document.getElementById('curr_ques_no').innerText = curr_no;
+}
+
+function setTotalQuesNo(total_no) {
+  document.getElementById('total_ques_no').innerText = total_no;
+}
+// *****************************************************************************************************************
+
+
+
+// Next button handler *******************************************
+document.getElementById('next').addEventListener('click', function() {
+
+  if (ques_no < questions.length - 1) {
+    saveAnswer(ques_no);
+    resetOptions();
+    setQuestion('incr');
+  }
+});
+// Prev button Handler**********************************************
+document.getElementById('prev').addEventListener('click', function() {
+  if (ques_no > 0) {
+    saveAnswer(ques_no);
+    resetOptions();
+    setQuestion('decr');
+  }
+});
+
+
+
+
+//Question load handler************************************
+
+window.addEventListener('load', Questions);
+async function Questions() {
+  const response = await fetch("start/questions", {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
     }
+  });
+  const data = await response.json();
+  for (let i = 0; i < data.length; i++) {
+    questions.push(data[i]);
+  }
+  setQuestion('incr');
+  setTotalQuesNo(questions.length);
+  setInitialAnswer(questions.length);
+  let clockId = timeHandler(1,29,5);
 
-    function setTotalQuesNo(total_no) {
-      document.getElementById('total_ques_no').innerText = total_no;
-    }
+}
+//**************************************************************
 
 
-    // Next button handler*******************************************
-    document.getElementById('next').addEventListener('click', function() {
-
-      if (ques_no < questions.length - 1) {
-        saveAnswer(ques_no);
-        resetOptions();
-        setQuestion('incr');
-      }
-    });
-    // Prev button Handler**********************************************
-    document.getElementById('prev').addEventListener('click', function() {
-      if (ques_no > 0) {
-        saveAnswer(ques_no);
-        resetOptions();
-        setQuestion('decr');
-      }
-    });
+// It sets the initial answer of total questions as -1 *********************************
+function setInitialAnswer(ques_length) {
+  for (let i = 0; i < ques_length; i++) {
+    answer[i] = -1;
+  }
+}
+// **************************************************************************************
 
 
 
-
-    //Question load handler************************************
-    const questions = [];
-    const answer = [];
-    window.addEventListener('load', Questions);
-    async function Questions() {
-      const response = await fetch("start/questions", {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        }
-      });
-      const data = await response.json();
-      for (let i = 0; i < data.length; i++) {
-        questions.push(data[i]);
-      }
-      setQuestion('incr');
-      setTotalQuesNo(questions.length);
-      setInitialAnswer(questions.length);
-      let clockId = timeHandler(1,29,5);
-  
-    }
-    //**************************************************************
-
-    function setInitialAnswer(ques_length) {
-      for (let i = 0; i < ques_length; i++) {
-        answer[i] = -1;
-      }
-    }
-
-
-    //Timer handler**************************************************************************
+//Timer handler ****************************************************************************
     
-    function timeHandler(hours,minutes,seconds){
-      clockId = setInterval(() => {
-      const [hh, mm, ss] = ["hh", "mm", "ss"].map(id => document.getElementById(id));
-        if (seconds > 0) {
-          seconds = --seconds;
-          setTimer(hours, minutes, seconds);
-        } else if (seconds == 0 && minutes > 0) {
-          minutes = --minutes;
-          seconds = 59;
-          setTimer(hours, minutes, seconds);
-        } else if (seconds == 0 && minutes == 0 && hours > 0) {
-          hours = --hours;
-          minutes = 59;
-          seconds = 59;
-          setTimer(hours, minutes, seconds);
-        } else if (seconds == 0 && minutes == 0 && hours == 0) {
-          clearInterval(cloclId);
-          console.log("Time over ");
+function timeHandler(hours,minutes,seconds){
+  clockId = setInterval(() => {
+  const [hh, mm, ss] = ["hh", "mm", "ss"].map(id => document.getElementById(id));
+    if (seconds > 0) {
+      seconds = --seconds;
+      setTimer(hours, minutes, seconds);
+    } else if (seconds == 0 && minutes > 0) {
+      minutes = --minutes;
+      seconds = 59;
+      setTimer(hours, minutes, seconds);
+    } else if (seconds == 0 && minutes == 0 && hours > 0) {
+      hours = --hours;
+      minutes = 59;
+      seconds = 59;
+      setTimer(hours, minutes, seconds);
+    } else if (seconds == 0 && minutes == 0 && hours == 0) {
+      clearInterval(cloclId);
+      console.log("Time over ");
+    }
+  }, 1000);
+  return clockId;
+}
+
+function setTimer(HH, MM, SS) {
+  HH < 9 ?  hh.innerText = '0'+HH :  hh.innerText = HH;
+  MM < 9 ?  mm.innerText = '0'+MM :  mm.innerText = MM;
+  SS < 9 ?  ss.innerText = '0'+SS :  ss.innerText = SS; 
+}
+
+// *************************************************************************************************
+
+
+
+//**************************************************************************************
+// It highlight the selected button in list*********************************************
+function selectCondition(condition) {
+  const [ele1, ele2, ele3] = ["all", "attempted", "unattempted"].map(id => document.getElementById(id));
+  if (condition == 'all') {
+    if (ele1.classList.contains('btn-secondary')) {
+      ele1.classList.remove('btn-secondary');
+      ele1.classList.add('btn-primary');
+    }
+    if (ele2.classList.contains('btn-primary')) {
+      ele2.classList.remove('btn-primary');
+      ele2.classList.add('btn-secondary');
+    }
+    if (ele3.classList.contains('btn-primary')) {
+      ele3.classList.remove('btn-primary');
+      ele3.classList.add('btn-secondary');
+    }
+  } else if (condition == 'attempted') {
+
+    if (ele2.classList.contains('btn-secondary')) {
+      ele2.classList.remove('btn-secondary');
+      ele2.classList.add('btn-primary');
+    }
+    if (ele1.classList.contains('btn-primary')) {
+      console.log("Called");
+      ele1.classList.remove('btn-primary');
+      ele1.classList.add('btn-secondary');
+    }
+    if (ele3.classList.contains('btn-primary')) {
+      ele3.classList.remove('btn-primary');
+      ele3.classList.add('btn-secondary');
+    }
+  } else if (condition == 'unattempted') {
+
+    if (ele3.classList.contains('btn-secondary')) {
+      ele3.classList.remove('btn-secondary');
+      ele3.classList.add('btn-primary');
+    }
+    if (ele2.classList.contains('btn-primary')) {
+      ele2.classList.remove('btn-primary');
+      ele2.classList.add('btn-secondary');
+    }
+    if (ele1.classList.contains('btn-primary')) {
+      ele1.classList.remove('btn-primary');
+      ele1.classList.add('btn-secondary');
+    }
+  }
+}
+// ***********************************************************************************************************
+
+
+//Question List *******************************************************************************
+const ques_list = document.getElementById('ques_list');
+
+// This Function Add the question in question lis***************************
+function questionListHandler(i){
+      const box = document.createElement("div");
+      const node = document.createElement("div");
+      const status = document.createElement('div');
+      let ele = (i + 1) + " -> " + questions[i].snippet;
+      node.innerText = ele;
+      status.classList.add('badge');
+      status.classList.add('rounded-pill');
+
+      if (answer[i] == -1) {
+        status.innerText = 'unattempted';
+        if (status.classList.contains('bg-success')) {
+          status.classList.remove('bg-success');
         }
-      }, 1000);
-     return clockId;
+        status.classList.add('bg-secondary');
+      } else {
+        status.innerText = 'attempted';
+        if (status.classList.contains('bg-secondary')) {
+          status.classList.remove('bg-secondary');
+        }
+        status.classList.add('bg-success');
+      }
+      node.classList.add("overflow-hidden");
+
+      box.setAttribute('id', questions[i].content_id);
+      box.appendChild(node);
+      box.appendChild(status);
+      box.classList.add('border-bottom');
+      ques_list.appendChild(box);
+}
+// ********************************************************************
+
+// It shows the Question on Question List Option depending on condition ALL, ATTEMPTED, UNATTEMPTED******************
+function quesList(condition) {
+
+  if (condition == "all") {
+    selectCondition('all');
+    ques_list.innerHTML = "";
+    for (i = 0; i < questions.length; i++) {
+      questionListHandler(i);
     }
 
-    function setTimer(HH, MM, SS) {
-      HH < 9 ?  hh.innerText = '0'+HH :  hh.innerText = HH;
-      MM < 9 ?  mm.innerText = '0'+MM :  mm.innerText = MM;
-      SS < 9 ?  ss.innerText = '0'+SS :  ss.innerText = SS; 
-    }
-
-
-    //**************************************************************************************
-    // It highlight the selected button in list*********************************************
-    function selectCondition(condition) {
-
-      const [ele1, ele2, ele3] = ["all", "attempted", "unattempted"].map(id => document.getElementById(id));
-      if (condition == 'all') {
-        if (ele1.classList.contains('btn-secondary')) {
-          ele1.classList.remove('btn-secondary');
-          ele1.classList.add('btn-primary');
-        }
-        if (ele2.classList.contains('btn-primary')) {
-          ele2.classList.remove('btn-primary');
-          ele2.classList.add('btn-secondary');
-        }
-        if (ele3.classList.contains('btn-primary')) {
-          ele3.classList.remove('btn-primary');
-          ele3.classList.add('btn-secondary');
-        }
-      } else if (condition == 'attempted') {
-
-        if (ele2.classList.contains('btn-secondary')) {
-          ele2.classList.remove('btn-secondary');
-          ele2.classList.add('btn-primary');
-        }
-        if (ele1.classList.contains('btn-primary')) {
-          console.log("Called");
-          ele1.classList.remove('btn-primary');
-          ele1.classList.add('btn-secondary');
-        }
-        if (ele3.classList.contains('btn-primary')) {
-          ele3.classList.remove('btn-primary');
-          ele3.classList.add('btn-secondary');
-        }
-      } else if (condition == 'unattempted') {
-
-        if (ele3.classList.contains('btn-secondary')) {
-          ele3.classList.remove('btn-secondary');
-          ele3.classList.add('btn-primary');
-        }
-        if (ele2.classList.contains('btn-primary')) {
-          ele2.classList.remove('btn-primary');
-          ele2.classList.add('btn-secondary');
-        }
-        if (ele1.classList.contains('btn-primary')) {
-          ele1.classList.remove('btn-primary');
-          ele1.classList.add('btn-secondary');
-        }
+  } else if (condition == "attempted") {
+    selectCondition('attempted');
+    ques_list.innerHTML = "";
+    for (i = 0; i < questions.length; i++) {
+      if (answer[i] != -1) {
+        questionListHandler(i);
       }
     }
-
-
-    //Question List *******************************************************************************
-    const ques_list = document.getElementById('ques_list');
-
-    function questionListHandler(){
-          const box = document.createElement("div");
-          const node = document.createElement("div");
-          const status = document.createElement('div');
-          let ele = (i + 1) + " -> " + questions[i].snippet;
-          node.innerText = ele;
-          status.classList.add('badge');
-          status.classList.add('rounded-pill');
-
-          if (answer[i] == -1) {
-            status.innerText = 'unattempted';
-            if (status.classList.contains('bg-success')) {
-              status.classList.remove('bg-success');
-            }
-            status.classList.add('bg-secondary');
-          } else {
-            status.innerText = 'attempted';
-            if (status.classList.contains('bg-secondary')) {
-              status.classList.remove('bg-secondary');
-            }
-            status.classList.add('bg-success');
-          }
-          node.classList.add("overflow-hidden");
-
-          box.setAttribute('id', questions[i].content_id);
-          box.appendChild(node);
-          box.appendChild(status);
-          box.classList.add('border-bottom');
-          ques_list.appendChild(box);
-    }
-    
-    function quesList(condition) {
-
-      if (condition == "all") {
-        selectCondition('all');
-        ques_list.innerHTML = "";
-        for (i = 0; i < questions.length; i++) {
-          questionListHandler();
-        }
-
-      } else if (condition == "attempted") {
-        selectCondition('attempted');
-        ques_list.innerHTML = "";
-        for (i = 0; i < questions.length; i++) {
-          if (answer[i] != -1) {
-            questionListHandler();
-          }
-        }
-      } else if (condition == "unattempted") {
-        selectCondition('unattempted');
-        ques_list.innerHTML = "";
-        for (i = 0; i < questions.length; i++) {
-          if (answer[i] == -1) {
-            questionListHandler();
-          }
-        }
+  } else if (condition == "unattempted") {
+    selectCondition('unattempted');
+    ques_list.innerHTML = "";
+    for (i = 0; i < questions.length; i++) {
+      if (answer[i] == -1) {
+        questionListHandler(i);
       }
     }
+  }
+}
+// ************************************************************************************************************************
 
+
+// ************************************************************************************************
 
 
     // Adding Event Listener to Question List in Side Bar********************************
@@ -429,7 +451,9 @@ function setOptions(curr) {
         }
       }
     }
+    
 
+    // This function End the test and send the user answer in JSON form to server****************************
     function endTest() {
       const hiddenInput = document.createElement('input');
       hiddenInput.type = 'hidden';

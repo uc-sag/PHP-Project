@@ -13,7 +13,7 @@
 </div>
 <br>
 <div class="ml-3 pl-3">
-  <ol type="A" class="">
+  <ol type="A">
     {for $foo=0 to 3}
         <li><span {if $original_answer[$current] == $foo+1} class ="alert-success"{elseif $answerByUser[$current] == $foo+1} class="alert-danger"{/if}>{$question_arr[$current]['options'][$foo]['answer']}</span> </li>
     {/for}
