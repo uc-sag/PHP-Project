@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-08-07 05:41:55
+/* Smarty version 4.3.1, created on 2023-08-07 06:37:14
   from 'C:\XAMPP\htdocs\website\PHP_Project\templates\TestPage.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_64d06803e849a7_76821950',
+  'unifunc' => 'content_64d074fa71c280_94475138',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '54d13ec3abca455107f3226a5998c7e42c12cc75' => 
     array (
       0 => 'C:\\XAMPP\\htdocs\\website\\PHP_Project\\templates\\TestPage.tpl',
-      1 => 1691379714,
+      1 => 1691383032,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_64d06803e849a7_76821950 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64d074fa71c280_94475138 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 <?php $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -40,7 +40,7 @@ function content_64d06803e849a7_76821950 (Smarty_Internal_Template $_smarty_tpl)
     <div class="modal-dialog w-50">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation</h1>
+          <h2 class="modal-title fs-3" id="exampleModalLabel">Confirmation</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -75,23 +75,23 @@ function content_64d06803e849a7_76821950 (Smarty_Internal_Template $_smarty_tpl)
    
     <div class="mb-1">
       <span class="btn btn-secondary">A</span>
-      <input type="radio" id="option-a" name="que" value=1>
-      <label for="option-a" id="optionA"></label>
+      <input type="radio" id="option-a" name="que" value=1 class="btn">
+      <label for="option-a" id="optionA" ></label>
    </div>
    
     <div class="mb-1">
     <span class="btn btn-secondary">B</span>
-      <input type="radio" id="option-b" name="que" value=2>
+      <input type="radio" id="option-b" name="que" value=2 class="btn">
       <label for="option-b" id="optionB"></label>
     </div>
     <div class="mb-1">
     <span class="btn btn-secondary">C</span>
-      <input type="radio" id="option-c" name="que" value=3>
+      <input type="radio" id="option-c" name="que" value=3 class="btn">
       <label for="option-c" id="optionC"></label>
     </div>
     <div class="mb-1"> 
     <span class="btn btn-secondary">D</span>
-    <input type="radio" id="option-d" name="que" value=4>
+    <input type="radio" id="option-d" name="que" value=4 class="btn">
       <label for="option-d" id="optionD"></label>
     </div>
   </div>

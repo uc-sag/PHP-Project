@@ -12,7 +12,7 @@
     <div class="modal-dialog w-50">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation</h1>
+          <h2 class="modal-title fs-3" id="exampleModalLabel">Confirmation</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -47,23 +47,23 @@
    
     <div class="mb-1">
       <span class="btn btn-secondary">A</span>
-      <input type="radio" id="option-a" name="que" value=1>
-      <label for="option-a" id="optionA"></label>
+      <input type="radio" id="option-a" name="que" value=1 class="btn">
+      <label for="option-a" id="optionA" ></label>
    </div>
    
     <div class="mb-1">
     <span class="btn btn-secondary">B</span>
-      <input type="radio" id="option-b" name="que" value=2>
+      <input type="radio" id="option-b" name="que" value=2 class="btn">
       <label for="option-b" id="optionB"></label>
     </div>
     <div class="mb-1">
     <span class="btn btn-secondary">C</span>
-      <input type="radio" id="option-c" name="que" value=3>
+      <input type="radio" id="option-c" name="que" value=3 class="btn">
       <label for="option-c" id="optionC"></label>
     </div>
     <div class="mb-1"> 
     <span class="btn btn-secondary">D</span>
-    <input type="radio" id="option-d" name="que" value=4>
+    <input type="radio" id="option-d" name="que" value=4 class="btn">
       <label for="option-d" id="optionD"></label>
     </div>
   </div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-08-07 06:05:03
+/* Smarty version 4.3.1, created on 2023-08-07 06:11:40
   from 'C:\XAMPP\htdocs\website\PHP_Project\templates\explanation.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_64d06d6f2a8553_72437287',
+  'unifunc' => 'content_64d06efca3dab0_10935054',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd6c0e48f312c1cc0ac145261d10b6ffebe406e5e' => 
     array (
       0 => 'C:\\XAMPP\\htdocs\\website\\PHP_Project\\templates\\explanation.tpl',
-      1 => 1691381100,
+      1 => 1691381423,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:header.tpl' => 1,
   ),
 ),false)) {
-function content_64d06d6f2a8553_72437287 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64d06efca3dab0_10935054 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html>
 <?php $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -40,7 +40,7 @@ function content_64d06d6f2a8553_72437287 (Smarty_Internal_Template $_smarty_tpl)
 </div>
 <br>
 <div class="ml-3 pl-3">
-  <ol type="A">
+  <ol type="A" class="">
     <?php
 $_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['foo']->step = 1;$_smarty_tpl->tpl_vars['foo']->total = (int) ceil(($_smarty_tpl->tpl_vars['foo']->step > 0 ? 3+1 - (0) : 0-(3)+1)/abs($_smarty_tpl->tpl_vars['foo']->step));
 if ($_smarty_tpl->tpl_vars['foo']->total > 0) {
