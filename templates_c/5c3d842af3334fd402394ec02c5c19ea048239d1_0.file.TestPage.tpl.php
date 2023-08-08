@@ -1,9 +1,37 @@
-<html>
-{include file = 'header.tpl'}
+<?php
+/* Smarty version 4.3.1, created on 2023-08-08 12:52:56
+  from 'C:\xampp\htdocs\website\PHP_Project\templates\TestPage.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.1',
+  'unifunc' => 'content_64d21e886a9646_78273565',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '5c3d842af3334fd402394ec02c5c19ea048239d1' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\website\\PHP_Project\\templates\\TestPage.tpl',
+      1 => 1691491975,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:header.tpl' => 1,
+    'file:sidebar.tpl' => 1,
+    'file:footer.tpl' => 1,
+  ),
+),false)) {
+function content_64d21e886a9646_78273565 (Smarty_Internal_Template $_smarty_tpl) {
+?><html>
+<?php $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
 <body>
 <div class="height50"></div>
-  {include file = 'sidebar.tpl'}
+  <?php $_smarty_tpl->_subTemplateRender('file:sidebar.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
  
 
@@ -69,11 +97,13 @@
   </div>
   <div class="height50"></div>
   
-  {include file = 'footer.tpl'}
+  <?php $_smarty_tpl->_subTemplateRender('file:footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
 
 
-<script>
+<?php echo '<script'; ?>
+>
 // These variables are used to store questions and user answer respectively***********************************
 const questions = [];
 const answer = [];
@@ -504,7 +534,9 @@ function quesList(condition) {
 
 
    
-  </script>
+  <?php echo '</script'; ?>
+>
 </body>
 
-</html>
+</html><?php }
+}

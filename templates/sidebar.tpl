@@ -6,7 +6,7 @@
         <span class="btn btn-secondary" id="unattempted" onclick="quesList('unattempted')">Unattempted</span>
    </div>
 
-   <div id="ques_list" class="offset-1">
+   <div id="ques_list">
        {* All the question list will be shown here *}
    </div>
    <div class="h-25"></div>
